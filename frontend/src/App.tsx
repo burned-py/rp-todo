@@ -28,11 +28,25 @@ function App() {
             .catch(console.error)
     }
 
+    function updateTodo(todo: Todo) {
+        axios.put(`/api/todo/${todo.id}`, todo)
+            .then((putTodoResponse) => {
+                setTodos(todos.map(currentTodo => {
+                    if (currentTodo.id === todo.id) {
+                        return putTodoResponse.data
+                    }
+                    else {
+                        return currentTodo
+                    }
+                }))
+            })
+            .catch(console.error)
+    }
 
     return (
         <div className="App">
             <Header/>
-            <TodoGallery todos={todos}/>
+            <TodoGallery todos={todos} updateTodo={updateTodo}/>
             <AddTodo addTodo={addTodo}/>
         </div>
     );

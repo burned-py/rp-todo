@@ -3,7 +3,8 @@ import {Todo} from "./Todo";
 import TodoCard from "./TodoCard";
 
 type Props = {
-    todos: Todo[]
+    todos: Todo[],
+    updateTodo: (todo: Todo) => void
 }
 
 export default function TodoGallery(props: Props) {
@@ -17,17 +18,17 @@ export default function TodoGallery(props: Props) {
         <div className='todo-gallery'>
             <div className='todo-gallery_column'>
                 {
-                    openTodos.map((todo) => <TodoCard key={todo.id} todo={todo} />)
+                    openTodos.map((todo) => <TodoCard key={todo.id} todo={todo} updateTodo={props.updateTodo}/>)
                 }
             </div>
             <div className='todo-gallery_column'>
                 {
-                    inProgressTodos.map((todo) => <TodoCard key={todo.id} todo={todo} />)
+                    inProgressTodos.map((todo) => <TodoCard key={todo.id} todo={todo} updateTodo={props.updateTodo}/>)
                 }
             </div>
             <div className='todo-gallery_column'>
                 {
-                    doneTodos.map((todo) => <TodoCard key={todo.id} todo={todo} />)
+                    doneTodos.map((todo) => <TodoCard key={todo.id} todo={todo} updateTodo={props.updateTodo}/>)
                 }
             </div>
         </div>
