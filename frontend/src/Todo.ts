@@ -5,3 +5,8 @@ export type Todo = {
     description: string,
     status: string
 }
+
+export type NewTodo = {
+    description: string,
+    status: string
+}
