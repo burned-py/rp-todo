@@ -16,6 +16,10 @@ export default function TodoCard(props: Props) {
     }
 
     function onAdvanceClick() {
+        //Wir erstellen eine Kopie des Todos mit den geupdateten Werten
+        //                         {} wir erstellen ein neues Object
+        //                          ... (spreading) übernehmen wir alle eigenschaften des alten todos
+        //                                       , wir fügen disese Eigenschaft neu hinzu oder ersetzten den wer der eigenschaft
         const todoToUpdate: Todo = {...props.todo, status: nextStatus[props.todo.status]}
 
         props.updateTodo(todoToUpdate)
