@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import Header from "./Header";
+import TodoGallery from "./TodoGallery";
+import {Todo} from "./Todo";
+import axios from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [todos, setTodos] = useState<Todo[]>([])
+
+    useEffect(() => {
+        loadAllTodos()
+    }, [])
+
+    function loadAllTodos() {
+        axios.get("/api/todo")
+            .then((response) => {setTodos(response.data)})
+            .catch((error) => {console.error(error)})
+    }
+
+
+    return (
+        <div className="App">
+            <Header/>
+            <TodoGallery todos={todos}/>
+        </div>
+    );
 }
 
 export default App;
