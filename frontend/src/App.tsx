@@ -43,10 +43,18 @@ function App() {
             .catch(console.error)
     }
 
+    function deleteTodo(id: string) {
+        axios.delete('/api/todo/' + id)
+            .then(() => {
+                setTodos(todos.filter((todo) => todo.id !== id))
+            })
+            .catch(console.error)
+    }
+
     return (
         <div className="App">
             <Header/>
-            <TodoGallery todos={todos} updateTodo={updateTodo}/>
+            <TodoGallery todos={todos} updateTodo={updateTodo} deleteTodo={deleteTodo}/>
             <AddTodo addTodo={addTodo}/>
         </div>
     );
