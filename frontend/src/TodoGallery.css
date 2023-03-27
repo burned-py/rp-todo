@@ -1,0 +1,9 @@
+
+.todo-gallery {
+    display: flex;
+    justify-content: space-around;
+}
+
+.todo-gallery_column {
+
+}
