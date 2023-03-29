@@ -1,5 +1,7 @@
 import './TodoCard.css'
 import {Todo} from "./Todo";
+import {Button} from '@mui/material';
+import {useNavigate} from "react-router-dom";
 
 type Props = {
     todo: Todo,
@@ -9,11 +11,15 @@ type Props = {
 
 export default function TodoCard(props: Props) {
 
-    const nextStatus: {OPEN: "IN_PROGRESS", IN_PROGRESS: "DONE", DONE: "DONE"} = {
+    const navigate = useNavigate()
+
+    const nextStatus: { OPEN: "IN_PROGRESS", IN_PROGRESS: "DONE", DONE: "DONE" } = {
         "OPEN": "IN_PROGRESS",
         "IN_PROGRESS": "DONE",
         "DONE": "DONE",
     }
+
+
 
     function onAdvanceClick() {
         //Wir erstellen eine Kopie des Todos mit den geupdateten Werten
@@ -34,6 +40,9 @@ export default function TodoCard(props: Props) {
             <p>{props.todo.description}</p>
             <p>{props.todo.status}</p>
             <p>{props.todo.id}</p>
+            <Button onClick={() => {
+                navigate('/todos/' + props.todo.id)
+            }}>Details</Button>
             {props.todo.status !== 'DONE' && <button onClick={onAdvanceClick}>Advance</button>}
             {props.todo.status === 'DONE' && <button onClick={onDeleteClick}>Delete</button>}
 

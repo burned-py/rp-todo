@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {NewTodo, Todo} from "./Todo";
 import axios from "axios";
+// @ts-ignore
+import{toast} from 'react-toastify';
 
 export default function useTodos() {
 
@@ -24,7 +26,9 @@ export default function useTodos() {
                 //                       , und wir fügen das neue Todo zusätzlich hinzu
                 setTodos([...todos, addTodoResponse.data])
             })
-            .catch(console.error)
+            .catch((error) => {
+            toast.error("Error while trying to make API call to \"/api/todo\" ")
+        })
     }
 
     function updateTodo(todo: Todo) {

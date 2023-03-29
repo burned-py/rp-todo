@@ -1,5 +1,6 @@
 import {FormEvent, useState} from "react";
 import {NewTodo} from "./Todo";
+import {useNavigate} from "react-router-dom";
 
 type AddTodoProps = {
     addTodo: (newTodo: NewTodo) => void
@@ -10,6 +11,7 @@ export default function AddTodo(props: AddTodoProps) {
 
     const [description, setDescription] = useState<string>('')
 
+    const navigate = useNavigate()
 
     function onSaveTodo(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
